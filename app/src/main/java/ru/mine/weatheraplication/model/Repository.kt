@@ -6,5 +6,7 @@ interface Repository {
 
     fun getWeatherFromServer(): WeatherDto
 
-    fun getWeatherFromLocalStorage(): WeatherDto
+    fun getWeatherFromLocalStorageRus(): List<WeatherDto>
+
+    fun getWeatherFromLocalStorageWorld(): List<WeatherDto>
 }

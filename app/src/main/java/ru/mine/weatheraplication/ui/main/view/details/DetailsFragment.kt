@@ -1,4 +1,4 @@
-package ru.mine.weatheraplication.ui.main.view
+package ru.mine.weatheraplication.ui.main.view.details
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -10,17 +10,17 @@ import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import ru.mine.weatheraplication.ui.main.viewmodel.AppState
 import ru.mine.weatheraplication.R
-import ru.mine.weatheraplication.databinding.MainFragmentBinding
+import ru.mine.weatheraplication.databinding.FragmentDetailsBinding
 import ru.mine.weatheraplication.model.dto.WeatherDto
 import ru.mine.weatheraplication.ui.main.viewmodel.MainViewModel
 
-class MainFragment : Fragment() {
-
-    private var _binding: MainFragmentBinding? = null
+class DetailsFragment : Fragment() {
+/*
+    private var _binding: FragmentDetailsBinding? = null
     private val binding get() = _binding!!
 
     companion object {
-        fun newInstance() = MainFragment()
+        fun newInstance() = DetailsFragment()
     }
 
     private lateinit var viewModel: MainViewModel
@@ -30,7 +30,7 @@ class MainFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = MainFragmentBinding.inflate(inflater, container, false)
+        _binding = FragmentDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -38,7 +38,7 @@ class MainFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.getLiveData().observe(viewLifecycleOwner) { renderData(it) }
-        viewModel.getWeather()
+        viewModel.getWeatherFromLocalSourceRus()
     }
 
     override fun onDestroyView() {
@@ -62,7 +62,7 @@ class MainFragment : Fragment() {
                 binding.loadingLayout.visibility = View.GONE
                 Snackbar
                     .make(binding.main, "Error", Snackbar.LENGTH_INDEFINITE)
-                    .setAction("Reload") { viewModel.getWeather() }
+                    .setAction("Reload") { viewModel.getWeatherFromLocalSourceRus() }
                     .show()
             }
         }
@@ -77,5 +77,5 @@ class MainFragment : Fragment() {
         )
         binding.temperatureValue.text = weather.temperature.toString()
         binding.feelsLikeValue.text = weather.feelsLike.toString()
-    }
+    }*/
 }

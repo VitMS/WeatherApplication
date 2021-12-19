@@ -14,20 +14,28 @@ class MainViewModel(
 
     fun getLiveData() = liveDataToObserver
 
-    fun getWeather() = getDataFromLocalSource()
+    fun getWeatherFromLocalSourceRus() = getDataFromLocalSource(isRussian = true)
 
-    fun getWeatherFromLocalSource() = getDataFromLocalSource()
+    fun getWeatherFromLocalSourceWorld() = getDataFromLocalSource(isRussian = false)
 
-    fun getWeatherFromRemoteSource() = getDataFromLocalSource()
+    fun getWeatherFromRemoteSource() = getDataFromLocalSource(isRussian = true)
 
-    private fun getDataFromLocalSource() {
+    private fun getDataFromLocalSource(isRussian: Boolean) {
         liveDataToObserver.value = AppState.Loading
         Thread {
             sleep(1_000)
             if (Random.nextBoolean()) {
-                liveDataToObserver.postValue(AppState.Success(repository.getWeatherFromLocalStorage()))
+                liveDataToObserver.postValue(
+                    AppState.Success(
+                        if (isRussian) {
+                            repository.getWeatherFromLocalStorageRus()
+                        } else {
+                            repository.getWeatherFromLocalStorageWorld()
+                        }
+                    )
+                )
             } else {
-                liveDataToObserver.postValue(AppState.Error(Exception("Нет интернета")))
+                liveDataToObserver.postValue(AppState.Error(Exception("Заглушка ошибки")))
             }
         }.start()
     }
